@@ -67,5 +67,7 @@
         </table>
     </div>
 </div>
+        @livewire('estate.create')
     </div>
+
 </x-app-layout>

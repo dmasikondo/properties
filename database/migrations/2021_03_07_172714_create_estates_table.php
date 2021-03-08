@@ -15,7 +15,19 @@ class CreateEstatesTable extends Migration
     {
         Schema::create('estates', function (Blueprint $table) {
             $table->id();
+            $table->enum('location', ['commercial', 'residential']);
             $table->foreignId('user_id');
+            $table->string('slug')->unique();
+            $table->string('address1');            
+            $table->string('address2');
+            $table->string('city');
+            $table->string('country')->default('zimbabwe');
+            $table->text('description');
+            $table->double('price', 10, 2);
+            $table->integer('area');
+            $table->boolean('approved')->default(false);
+            $table->boolean('sold')->default(false);
+            $table->enum('visibility', ['private','unlisted','public'])->default('private');
             $table->timestamps();
         });
     }
