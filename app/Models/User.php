@@ -78,4 +78,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Estate::class);
     }
+
+
+ 
+
+    /**
+      * Check if the user has role of 
+    */   
+
+    public function hasRole($role)
+    {
+        return  (bool) $this->roles()->where('name',$role)->count();
+    }      
 }

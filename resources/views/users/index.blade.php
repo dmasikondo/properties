@@ -4,17 +4,16 @@
             {{ __('Users') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
-<div class="text-gray-900 bg-gray-200">
+<div class="text-gray-900 bg-gray-200 w-8/12 mx-auto">
     <div class="p-4 flex">
         <h1 class="text-3xl">
             Users
         </h1>
         <x-session-message></x-session-message>       
     </div>
-    <div class="px-3 py-4 flex justify-center">
-        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+    <div class="px-3 py-4 flex justify-center ">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4 table-responsive">
             <tbody>
                 <tr class="border-b">
                     <th class="text-left p-3 px-5">Name</th>
@@ -67,7 +66,6 @@
         </table>
     </div>
 </div>
-        @livewire('estate.create')
     </div>
 
 </x-app-layout>

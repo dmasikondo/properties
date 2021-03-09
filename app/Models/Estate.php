@@ -24,6 +24,7 @@ class Estate extends Model
         'description',
         'slug',
         'visibility',
+        'approved',
     ];  
 
 

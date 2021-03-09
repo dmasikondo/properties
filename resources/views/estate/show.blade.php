@@ -17,7 +17,16 @@
             <div class="bg-blue-200 overflow-hidden shadow-xl sm:rounded-lg p-2 mb-2">
                 Your Property has been submitted. Now awaiting admin approval!
             </div>
-        @endif        
+        @endif      
+        @if($estate->visibility =='public' && $estate->approved == false && Auth::user()->hasRole('admin'))
+               <form action="/estates/{{$estate->slug}}/publish" method="post">
+                   @csrf
+                   @method('patch')
+                    <div class="col-span-6 sm:col-span-4 my-4">
+                        <button class="p-2 bg-gray-800 w-100 rounded shadow text-white hover:bg-gray-600" type="submit">Publish</button>          
+                      </div> 
+               </form>
+        @endif           
 
             <div class="bg-white shadow-xl rounded-lg overflow-hidden">
                     <div class="bg-cover bg-center bg-gray-900 h-56 p-4">
@@ -63,9 +72,13 @@
                             <div>
                                 <p class="font-bold text-gray-900">{{$estate->user->name}}</p>
                                 <p class="text-sm text-gray-700">{{$estate->user->email}}</p>
+                                
                             </div>
-                        </div>
+                        </div>                        
                     </div>
+                    <div class="flex justify-end m-4">
+                        <button  class="font-bold text-green-900">{{$estate->sold? 'Sold': 'Available'}}</button>
+                    </div>                    
                 </div>
 
                 <div>

@@ -14,18 +14,23 @@ use App\Http\Controllers\EstateController;
 |
 */
 
-Route::get('/', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('welcome');
 });
 
 Route::get('/users', [UserController::class, 'index']);
-Route::patch('/users/{user:slug}/add-role', [UserController::class, 'updateRole']);
-Route::delete('/users/{user:slug}/delete', [UserController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'verified'])->patch('/users/{user:slug}/add-role', [UserController::class, 'updateRole']);
+Route::middleware(['auth:sanctum', 'verified'])->delete('/users/{user:slug}/delete', [UserController::class, 'destroy']);
 
 
-Route::get('/estates/{estate:slug}', [EstateController::class, 'show']);
-Route::patch('/estates/{estate:slug}/visibility', [EstateController::class, 'visibility']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/estates/create', [EstateController::class, 'create'])->name('property');
+Route::middleware(['auth:sanctum', 'verified'])->get('/estates/{estate:slug}', [EstateController::class, 'show']);
+Route::middleware(['auth:sanctum', 'verified'])->patch('/estates/{estate:slug}/visibility', [EstateController::class, 'visibility']);
+Route::middleware(['auth:sanctum', 'verified'])->patch('/estates/{estate:slug}/publish', [EstateController::class, 'publish']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/notification', function () {
+    return view('notification');
+})->name('notification');

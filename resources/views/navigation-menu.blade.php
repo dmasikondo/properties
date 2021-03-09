@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="/">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -14,8 +14,21 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>
+                    </x-jet-nav-link>   
+                    <x-jet-nav-link href="{{ route('property') }}" :active="request()->routeIs('property')">
+                        {{ __('Post Property') }}
+                    </x-jet-nav-link>                                      
+                    <x-jet-nav-link href="{{ route('notification') }}" :active="request()->routeIs('notification')">
+                        {{ __('Notification') }}
+                @if(Auth::user()->unreadNotifications()->count())
+                    <span class="relative inline-block">  
+                      <span class="absolute top-0 left-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-gray-900 rounded-full">
+                         {{Auth::user()->unreadNotifications()->count()}}
+                      </span>
+                    </span>
+                @endif     
+                    </x-jet-nav-link>                        
+                </div>                
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
