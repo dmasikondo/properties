@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->patch('/users/{user:slug}/add-r
 Route::middleware(['auth:sanctum', 'verified'])->delete('/users/{user:slug}/delete', [UserController::class, 'destroy']);
 
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/estates/myproperties', [EstateController::class, 'myproperties'])->name('myproperties');
 Route::middleware(['auth:sanctum', 'verified'])->get('/estates/create', [EstateController::class, 'create'])->name('property');
 Route::middleware(['auth:sanctum', 'verified'])->get('/estates/{estate:slug}', [EstateController::class, 'show']);
 Route::middleware(['auth:sanctum', 'verified'])->patch('/estates/{estate:slug}/visibility', [EstateController::class, 'visibility']);

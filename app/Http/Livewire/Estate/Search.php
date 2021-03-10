@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Estate;
 
 use Livewire\Component;
 use App\Models\Estate;
+use Livewire\WithPagination;
 
 class Search extends Component
 {
@@ -19,7 +20,7 @@ class Search extends Component
     	->orWhere('area','LIKE',$searchTerm)
     	->orWhere('city','LIKE',$searchTerm)
     	->orWhere('price','LIKE',$searchTerm)
-    	->get();
+    	->paginate(3);
         return view('livewire.estate.search', compact('estates'));
     }
 }

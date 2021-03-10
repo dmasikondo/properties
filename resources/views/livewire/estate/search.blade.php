@@ -26,7 +26,7 @@
 			                    </div>
 			                    <div class="p-4">
 			                        <p class="uppercase tracking-wide text-sm font-bold text-gray-700">
-			                            {{$estate->city}} • {{$estate->area}}m <sup>2</sup>
+			                            {{$estate->city}} • {{$estate->area}}m<sup>2</sup>
 
 			                        </p>
 			                        <p class="text-3xl text-gray-900">${{$estate->price}}</p>
@@ -35,13 +35,7 @@
 			                        </p>
 			                    </div>
 			                    <div class="flex p-4 border-t border-gray-300 text-gray-700">
-			                        {!! nl2br($estate->description) !!}
-			                    </div>
-			                    <div class="flex p-4 border-t border-gray-300 text-gray-700">
-			                        <div class="flex-1 inline-flex items-center">
-
-			                            <p><span class="text-gray-900 font-bold">Created </span> {{$estate->created_at->diffForHumans()}}</p>
-			                        </div>
+			                       
 			                        <div class="flex-1 inline-flex items-center">
 			                            <p><span class="text-gray-900 font-bold">Last Updated </span> {{$estate->updated_at->diffForHumans()}}</p>
 			                        </div>
@@ -57,9 +51,18 @@
 			                            </div>
 			                        </div>
 			                    </div>
+			                    <div class="flex justify-end m-4">
+			                        <button  class="font-bold text-green-900">{{$estate->sold? 'Sold': 'Available'}}</button>
+			                    </div> 			                    
 			                </div>    
 
             	@endforeach
+
             	</div>
+
+            	<div class="p-4 m-8">
+            		{{$estates->links()}}
+            	</div>
+            	
             </div>
 </div>
